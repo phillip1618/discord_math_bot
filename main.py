@@ -1,5 +1,6 @@
 import discord
 import os
+import random
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -31,7 +32,10 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    n = len(math_jokes_dict)
+    random_joke_index = str(random.randint(0, n-1))
+
     if message.content.startswith('$mathjoke'):
-        await message.channel.send('Hello!')
+        await message.channel.send(math_jokes_dict[random_joke_index])
 
 client.run(os.getenv('TOKEN'))
