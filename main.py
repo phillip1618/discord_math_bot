@@ -1,9 +1,12 @@
 import discord
 import os
 import random
+import sentry_sdk
 from dotenv import load_dotenv
 
 load_dotenv()
+sentry_sdk.init(os.getenv('SENTRY_SDK_INIT'), traces_sample_rate=1.0)
+
 
 math_jokes_dict = {}
 
