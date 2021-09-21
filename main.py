@@ -1,11 +1,14 @@
-import discord
 import os
 import random
 import sentry_sdk
+
 from dotenv import load_dotenv
+from discord_client import DiscordClient
 
 load_dotenv()
-sentry_sdk.init(os.getenv('SENTRY_SDK_INIT'), traces_sample_rate=1.0)
+
+if (os.getenv('SENTRY_PROD') == 'PROD'): 
+    sentry_sdk.init(os.getenv('SENTRY_SDK_INIT'), traces_sample_rate=1.0)
 
 
 math_jokes_dict = {}
@@ -24,21 +27,6 @@ def fill_dict():
     return
 
 fill_dict()
-client = discord.Client()
 
-@client.event
-async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
-
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    n = len(math_jokes_dict)
-    random_joke_index = str(random.randint(0, n-1))
-
-    if message.content.startswith('$mathjoke'):
-        await message.channel.send(math_jokes_dict[random_joke_index])
-
+client = DiscordClient(math_jokes_dict = math_jokes_dict)
 client.run(os.getenv('TOKEN'))
