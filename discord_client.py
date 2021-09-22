@@ -4,7 +4,7 @@ import discord
 class DiscordClient(discord.Client):
     def __init__(self, math_jokes_dict):
         super().__init__()
-        
+
         self.math_jokes_dict = math_jokes_dict
         self.math_jokes_dict_len = len(self.math_jokes_dict)
 
@@ -15,7 +15,7 @@ class DiscordClient(discord.Client):
         if message.author == self.user:
             return
 
-        random_joke_index = str(random.randint(0, self.math_jokes_dict_len))
+        random_joke_index = str(random.randint(0, self.math_jokes_dict_len - 1))
 
         if message.content.startswith('$mathjoke'):
             await message.channel.send(self.math_jokes_dict[random_joke_index])
