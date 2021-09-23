@@ -17,7 +17,7 @@ def fill_dict():
 
     i = 0
     lines = []
-    with open('math_jokes.txt', 'r', encoding="mbcs") as f:
+    with open('math_jokes.txt', 'r') as f:
         lines = f.readlines()
 
     for line in lines:

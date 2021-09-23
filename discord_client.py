@@ -15,7 +15,7 @@ class DiscordClient(discord.Client):
         if message.author == self.user:
             return
 
-        random_joke_index = str(random.randint(0, self.math_jokes_dict_len))
+        random_joke_index = str(random.randint(0, self.math_jokes_dict_len - 1))
 
         if message.content.startswith('$mathjoke'):
             await message.channel.send(self.math_jokes_dict[random_joke_index])
