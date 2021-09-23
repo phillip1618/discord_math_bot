@@ -1,5 +1,4 @@
 import os
-import random
 import sentry_sdk
 
 from dotenv import load_dotenv

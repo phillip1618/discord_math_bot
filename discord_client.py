@@ -4,7 +4,7 @@ import discord
 class DiscordClient(discord.Client):
     def __init__(self, math_jokes_dict):
         super().__init__()
-        
+
         self.math_jokes_dict = math_jokes_dict
         self.math_jokes_dict_len = len(self.math_jokes_dict)
 
